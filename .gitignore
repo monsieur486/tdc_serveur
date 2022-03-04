@@ -1,7 +1,9 @@
 /.idea/
 /node_modules/
+/target/
+/src/main/resources/static/
+
 /.env
 /env.properties
 /prod.sh
 /yarn.lock
-/target/
