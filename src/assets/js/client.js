@@ -4,6 +4,7 @@ window.addEventListener( "load", function( event ) {
 
     function traitement(obj) {
         if (obj.code === 100) {
+            console.log( "ping !!!" );
             alert( "Page rechargée par ping" );
             //location.reload();
         }
