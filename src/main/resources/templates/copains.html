@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Copains</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div>
+        <h4>Copains</h4>
+        <p>Nombre de copains : <span th:text="${nombreCopains}"></span></p>
+        <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <button class="uk-button uk-button-primary uk-box-shadow-hover-large">Ajouter un copain</button>
+        </div>
+        <table class="uk-table uk-table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="copain : ${copains}">
+                <td>
+                    <span class="trombi">
+                        <img class="uk-border-rounded uk-box-shadow-medium" th:src="@{${'/img/' + copain.getImage()}}" width="50px"/>
+                    </span>
+                    <span class="nom_trombi" th:text="${copain.nom}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

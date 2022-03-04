@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Réunion Active</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+    <div>
+        <span th:if="${reunionActiveId}">
+            <p th:text="${reunionActiveId}"></p>
+        </span>
+        <span th:unless="${reunionActiveId}">
+            <h4>Réunion Active</h4>
+            <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <button class="uk-button uk-button-primary">Ajouter une réunion</button>
+            </div>
+        </span>
+    </div>
+</div>
+
+<div layout:fragment="optional">
+    <script th:src="@{${'/js/app.min.js'}}"></script>
+</div>
+
+</body>
+</html>

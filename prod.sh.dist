@@ -1,0 +1,10 @@
+docker-compose down
+git pull https://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:x-oauth-basic@github.com/monsieur486/tdc_serveur.git
+docker-compose up
+./mvnw clean
+./mvnw install
+clear
+echo "=============================================================="
+echo "Serveur compilé. Lancement de l'execuatable en mode production"
+echo "=============================================================="
+java -jar target/tdc_serveur-0.0.1-SNAPSHOT.jar
