@@ -1,13 +1,13 @@
 window.addEventListener( "load", function( event ) {
 
-    let ws = new WebSocket( "ws://localhost:8887/");
+    let ws = new WebSocket( "ws://tdc.mr486.com:8887/");
 
     function traitement(obj) {
         console.log( "Message du serveur code:" + obj.code  );
         console.log( "Message du serveur content:" + obj.content  );
         if (obj.code === 100) {
             alert( "Page rechargée par ping" );
-            //location.reload();
+            location.reload();
         }
     }
 
