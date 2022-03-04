@@ -14,9 +14,9 @@ public class Message {
     return GSON.toJson(this, Message.class);
   }
 
-  public Message(Integer code, String msg){
+  public Message(Integer code, String content){
     this.code = code;
-    this.content = msg;
+    this.content = content;
   }
 
 }

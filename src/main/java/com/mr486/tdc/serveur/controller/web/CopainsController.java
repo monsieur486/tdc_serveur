@@ -26,11 +26,4 @@ public class CopainsController {
     return "copains";
   }
 
-  @GetMapping(value = { "/ping" })
-  public String pingUsers(Model model)
-  {
-    chatServer.pingAll();
-    return "ping";
-  }
-
 }

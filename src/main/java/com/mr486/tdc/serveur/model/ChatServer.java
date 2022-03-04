@@ -32,12 +32,13 @@ public class ChatServer extends WebSocketServer
 
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
-        ;
+        log.info("connexion");
     }
 
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-        ;
+
+        log.info("déconnexion");
     }
 
     @Override
@@ -69,7 +70,7 @@ public class ChatServer extends WebSocketServer
         setConnectionLostTimeout(100);
     }
 
-    public void pingAll(){
-        broadcast(sendMessage(100,"Message de ping"));
+    public void sendToAll(Integer code, String content){
+        broadcast(sendMessage(code,content));
     }
 }

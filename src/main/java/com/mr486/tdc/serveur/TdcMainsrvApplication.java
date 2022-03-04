@@ -1,6 +1,7 @@
 package com.mr486.tdc.serveur;
 
 import com.mr486.tdc.serveur.model.ChatServer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.ByteArrayInputStream;
@@ -17,6 +18,7 @@ import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.Objects;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -28,15 +30,22 @@ public class TdcMainsrvApplication {
 
   public static final ChatServer chatServer = new ChatServer(8887);
 
+  @Value("${spring.profiles.active}")
+  static
+  String profil;
+
   public static void main(String[] args) {
 
     SpringApplication.run(TdcMainsrvApplication.class, args);
 
-    SSLContext context = getContext();
-    if (context != null) {
-      chatServer.setWebSocketFactory(new DefaultSSLWebSocketServerFactory(getContext()));
+    if (Objects.equals(profil, "prod")){
+      SSLContext context = getContext();
+      if (context != null) {
+        chatServer.setWebSocketFactory(new DefaultSSLWebSocketServerFactory(getContext()));
+      }
+      chatServer.setConnectionLostTimeout(30);
     }
-    chatServer.setConnectionLostTimeout(30);
+
     chatServer.start();
   }
 

@@ -16,6 +16,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 public class Reunion {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -28,6 +29,9 @@ public class Reunion {
 
   @Column(name = "date_creation")
   private Date dateCreation;
+
+  @Enumerated(EnumType.ORDINAL)
+  private Statut statut;
 
   @Override
   public boolean equals(Object o) {
@@ -42,3 +46,4 @@ public class Reunion {
     return getClass().hashCode();
   }
 }
+
