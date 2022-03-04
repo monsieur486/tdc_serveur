@@ -1,6 +1,4 @@
-docker-compose down
 git pull https://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:x-oauth-basic@github.com/monsieur486/tdc_serveur.git
-docker-compose up
 ./mvnw clean
 ./mvnw install
 clear
