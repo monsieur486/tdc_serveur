@@ -87,7 +87,7 @@ CREATE TABLE `copain` (
 --
 
 INSERT INTO `copain` (`id`, `image`, `nom`) VALUES
-(1, 'laurent.jpg', 'Laurent'),
+(1, 'laurent.png', 'Laurent'),
 (2, 'base.png', 'Etienne'),
 (3, 'dan.png', 'Dan'),
 (4, 'base.png', 'JP'),
