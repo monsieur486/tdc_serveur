@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : ven. 25 fév. 2022 à 16:12
+-- Généré le : sam. 05 mars 2022 à 11:51
 -- Version du serveur : 5.7.37
 -- Version de PHP : 8.0.15
 
@@ -28,12 +28,13 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `cagnotte`;
-CREATE TABLE `cagnotte` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cagnotte` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date_creation` date DEFAULT NULL,
   `est_favorite` bit(1) NOT NULL,
-  `nom` varchar(150) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+  `nom` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `cagnotte`
@@ -50,12 +51,13 @@ INSERT INTO `cagnotte` (`id`, `date_creation`, `est_favorite`, `nom`) VALUES
 --
 
 DROP TABLE IF EXISTS `contrat`;
-CREATE TABLE `contrat` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `contrat` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `initiale` varchar(6) NOT NULL,
   `nom` varchar(150) NOT NULL,
-  `points` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+  `points` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `contrat`
@@ -67,7 +69,7 @@ INSERT INTO `contrat` (`id`, `initiale`, `nom`, `points`) VALUES
 (3, 'GS', 'Garde-Sans', 100),
 (4, 'GC', 'Garde-Contre', 200),
 (5, 'CLM', 'Chelem', 500),
-(6, '🇧🇪', '🇧🇪 Belge', 0);
+(6, '🇧🇪', 'Belge', 0);
 
 -- --------------------------------------------------------
 
@@ -76,11 +78,12 @@ INSERT INTO `contrat` (`id`, `initiale`, `nom`, `points`) VALUES
 --
 
 DROP TABLE IF EXISTS `copain`;
-CREATE TABLE `copain` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `copain` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `image` varchar(150) DEFAULT NULL,
-  `nom` varchar(150) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+  `nom` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `copain`
@@ -101,13 +104,16 @@ INSERT INTO `copain` (`id`, `image`, `nom`) VALUES
 --
 
 DROP TABLE IF EXISTS `joueur`;
-CREATE TABLE `joueur` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `joueur` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `dette` int(11) NOT NULL,
   `dette_active` bit(1) DEFAULT NULL,
   `est_guest` bit(1) DEFAULT NULL,
   `copain` bigint(20) NOT NULL,
-  `reunion` bigint(20) NOT NULL
+  `reunion` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKau4mlbbg12sxtk45c6x9gmcid` (`copain`),
+  KEY `FKdyxcfxp009b3nj0wnj9cvsf73` (`reunion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,8 +123,8 @@ CREATE TABLE `joueur` (
 --
 
 DROP TABLE IF EXISTS `partie`;
-CREATE TABLE `partie` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `partie` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `chelem_reussi` bit(1) NOT NULL,
   `contrat_reussi` bit(1) NOT NULL,
   `date_creation` datetime DEFAULT NULL,
@@ -127,7 +133,13 @@ CREATE TABLE `partie` (
   `contrat` bigint(20) NOT NULL,
   `petit_au_bout` bigint(20) DEFAULT NULL,
   `preneur` bigint(20) DEFAULT NULL,
-  `reunion` bigint(20) NOT NULL
+  `reunion` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKt4dtrhy0r4sh1y8f71xclegbe` (`appel`),
+  KEY `FKo0xf83n8ifpp6mu220wjcbkmn` (`contrat`),
+  KEY `FKd2tei3rya506j6rddawjwoyea` (`petit_au_bout`),
+  KEY `FKl3j87se49f7y9ejx5vwp1qg7t` (`preneur`),
+  KEY `FKs600gxwitmli2640yk3c5a4qc` (`reunion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -137,100 +149,22 @@ CREATE TABLE `partie` (
 --
 
 DROP TABLE IF EXISTS `reunion`;
-CREATE TABLE `reunion` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reunion` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date_creation` datetime DEFAULT NULL,
   `nom` varchar(150) NOT NULL,
-  `cagnotte` bigint(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+  `cagnotte` bigint(20) NOT NULL,
+  `statut` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK5977jjudse7huxcbx2idw638l` (`cagnotte`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- Index pour les tables déchargées
+-- Déchargement des données de la table `reunion`
 --
 
---
--- Index pour la table `cagnotte`
---
-ALTER TABLE `cagnotte`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `copain`
---
-ALTER TABLE `copain`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `joueur`
---
-ALTER TABLE `joueur`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKau4mlbbg12sxtk45c6x9gmcid` (`copain`),
-  ADD KEY `FKdyxcfxp009b3nj0wnj9cvsf73` (`reunion`);
-
---
--- Index pour la table `partie`
---
-ALTER TABLE `partie`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKt4dtrhy0r4sh1y8f71xclegbe` (`appel`),
-  ADD KEY `FKo0xf83n8ifpp6mu220wjcbkmn` (`contrat`),
-  ADD KEY `FKd2tei3rya506j6rddawjwoyea` (`petit_au_bout`),
-  ADD KEY `FKl3j87se49f7y9ejx5vwp1qg7t` (`preneur`),
-  ADD KEY `FKs600gxwitmli2640yk3c5a4qc` (`reunion`);
-
---
--- Index pour la table `reunion`
---
-ALTER TABLE `reunion`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK5977jjudse7huxcbx2idw638l` (`cagnotte`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `cagnotte`
---
-ALTER TABLE `cagnotte`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `contrat`
---
-ALTER TABLE `contrat`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `copain`
---
-ALTER TABLE `copain`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `joueur`
---
-ALTER TABLE `joueur`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `partie`
---
-ALTER TABLE `partie`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `reunion`
---
-ALTER TABLE `reunion`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+INSERT INTO `reunion` (`id`, `date_creation`, `nom`, `cagnotte`, `statut`) VALUES
+(1, '2022-03-03 21:00:00', '2022-03-03', 1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
