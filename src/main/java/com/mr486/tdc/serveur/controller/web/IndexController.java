@@ -11,7 +11,7 @@ public class IndexController {
   @GetMapping(value = { "/" })
   public String getHomePage(Model model)
   {
-    model.addAttribute("reunionActiveId", 0);
+    model.addAttribute("reunionActiveId", 1);
     return "index";
   }
 
