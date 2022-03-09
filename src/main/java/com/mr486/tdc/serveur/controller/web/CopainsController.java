@@ -33,7 +33,12 @@ public class CopainsController {
 
     List<Copain> copains = contactService.toutLesCopains(page, lignes);
     Long nombreCopains = contactService.count();
+    double rapportPages = (nombreCopains/lignes);
+    int pages = (int) rapportPages;
     model.addAttribute("copains", copains);
+    model.addAttribute("pageCourante", page);
+    model.addAttribute("pagesMax", pages);
+    model.addAttribute("lignes", lignes);
     model.addAttribute("nombreCopains", nombreCopains);
     return "copains";
   }
