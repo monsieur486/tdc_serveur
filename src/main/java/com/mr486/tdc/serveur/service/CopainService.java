@@ -5,9 +5,10 @@ import com.mr486.tdc.serveur.tools.ResourceNotFoundException;
 import java.util.List;
 
 public interface CopainService {
-  Boolean exist(Long id);
+  Boolean existe(Long id);
   List<Copain> toutLesCopains(int page, int lignes);
   Copain enregistreCopain(Copain copain);
-  Copain copainParId(long id) throws ResourceNotFoundException;
-  void supprimeCopainParId(long id);
+  Copain copainAvecId(long id) throws ResourceNotFoundException;
+  void supprimeCopainAvecId(long id);
+  long compte();
 }

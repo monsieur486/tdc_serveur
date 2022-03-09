@@ -32,7 +32,7 @@ public class CopainsController {
     }
 
     List<Copain> copains = contactService.toutLesCopains(page, lignes);
-    Long nombreCopains = contactService.count();
+    Long nombreCopains = contactService.compte();
     double rapportPages = (nombreCopains/lignes);
     int pages = (int) rapportPages;
     model.addAttribute("copains", copains);

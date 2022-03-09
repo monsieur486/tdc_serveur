@@ -29,6 +29,7 @@ import org.java_websocket.server.DefaultSSLWebSocketServerFactory;
 public class TdcMainsrvApplication {
 
   public static final ChatServer chatServer = new ChatServer(8887);
+  private static Long reunionActiveId;
 
   @Value("${spring.profiles.active}")
   static
@@ -117,6 +118,10 @@ public class TdcMainsrvApplication {
       e.printStackTrace();
     }
     return bytesArray;
+  }
+
+  public static Long idPartieActive(){
+    return reunionActiveId;
   }
 
 }

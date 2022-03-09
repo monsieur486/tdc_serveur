@@ -18,11 +18,11 @@ public class CopainServiceImpl implements CopainService{
   @Autowired
   private CopainRepository copainRepository;
 
-  public Boolean exist(Long id) {
+  public Boolean existe(Long id) {
     return copainRepository.existsById(id);
   }
 
-  public Copain copainParId(long id) throws ResourceNotFoundException {
+  public Copain copainAvecId(long id) throws ResourceNotFoundException {
     Copain copain = copainRepository.findById(id).orElse(null);
     if (copain==null) {
       throw new ResourceNotFoundException("Copain introuvable avec l'id: " + id);
@@ -44,11 +44,11 @@ public class CopainServiceImpl implements CopainService{
 
   }
 
-  public void supprimeCopainParId(long id) {
+  public void supprimeCopainAvecId(long id) {
     this.copainRepository.deleteById(id);
   }
 
-  public Long count() {
+  public long compte() {
     return copainRepository.count();
   }
 }
