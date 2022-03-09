@@ -5,6 +5,7 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -15,7 +16,10 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Entity
-public class Cagnotte {
+public class Cagnotte implements Serializable {
+
+  private static final long serialVersionUID = 4048798961366546485L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

@@ -5,6 +5,7 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Component
@@ -13,7 +14,10 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Entity
-public class Contrat {
+public class Contrat implements Serializable {
+
+  private static final long serialVersionUID = 4048798961366546485L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

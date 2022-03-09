@@ -3,9 +3,9 @@ package com.mr486.tdc.serveur.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Component
@@ -14,7 +14,10 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Entity
-public class Copain {
+public class Copain implements Serializable {
+
+  private static final long serialVersionUID = 4048798961366546485L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
