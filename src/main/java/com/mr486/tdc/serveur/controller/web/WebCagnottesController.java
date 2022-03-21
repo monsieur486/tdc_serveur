@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class CagnottesController {
+public class WebCagnottesController {
 
   @GetMapping(value = { "/cagnottes" })
   public String getHomePage(Model model)

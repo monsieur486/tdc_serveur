@@ -1,7 +1,7 @@
 package com.mr486.tdc.serveur.controller.web;
 
 import com.mr486.tdc.serveur.model.Copain;
-import com.mr486.tdc.serveur.service.CopainServiceImpl;
+import com.mr486.tdc.serveur.service.CopainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +12,10 @@ import java.util.List;
 
 
 @Controller
-public class CopainsController {
+public class WebCopainsController {
 
   @Autowired
-  private CopainServiceImpl contactService;
+  private CopainService contactService;
 
   @GetMapping(value = { "/copains" })
   public String getHomePage(

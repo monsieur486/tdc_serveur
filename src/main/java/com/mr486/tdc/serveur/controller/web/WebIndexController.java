@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class IndexController {
+public class WebIndexController {
 
   @GetMapping(value = { "/" })
   public String getHomePage(Model model)
