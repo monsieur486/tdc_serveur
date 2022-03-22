@@ -44,15 +44,15 @@ public class ChatServer extends WebSocketServer
     @Override
     public void onMessage(WebSocket conn, String message) {
         if (Objects.equals(message, "ping")) {
-            broadcast(sendMessage(100,"Message de ping"));
+            broadcast(sendMessage(100,"Ping de ping"));
         } else {
             broadcast(sendMessage(200,message));
         }
     }
 
     private String sendMessage(Integer code, String msg){
-        Message messageToSend = new Message(code, msg);
-        return messageToSend.toJson();
+        Ping pingToSend = new Ping(code, msg);
+        return pingToSend.toJson();
     }
 
     @Override

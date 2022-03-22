@@ -1,14 +1,9 @@
 package com.mr486.tdc.serveur.service;
 
 import com.mr486.tdc.serveur.model.Copain;
-import com.mr486.tdc.serveur.tools.ResourceNotFoundException;
 import com.mr486.tdc.serveur.repository.CopainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,33 +17,30 @@ public class CopainService {
     return copainRepository.existsById(id);
   }
 
-  public Copain copainAvecId(long id) throws ResourceNotFoundException {
-    Copain copain = copainRepository.findById(id).orElse(null);
-    if (copain==null) {
-      throw new ResourceNotFoundException("Copain introuvable avec l'id: " + id);
-    }
-    else return copain;
+  public Copain copainAvecId(Long id) {
+    return copainRepository.findById(id).orElse(null);
   }
 
-  public List<Copain> toutLesCopains(int page, int lignes) {
-    List<Copain> copains = new ArrayList<>();
-    Pageable triesParNom = PageRequest.of(page - 1, lignes,
-      Sort.by("nom").ascending());
-    copainRepository.findAll(triesParNom).forEach(copains::add);
+  public List<Copain> toutLesCopains() {
+    List<Copain> copains;
+    copains = copainRepository.findAll();
     return copains;
   }
 
   public Copain enregistreCopain(Copain copain) {
-
     return copainRepository.save(copain);
-
   }
 
-  public void supprimeCopainAvecId(long id) {
+  public Copain updateCopain(Long id, Copain copain) {
+    copain.setId(id);
+    return copainRepository.save(copain);
+  }
+
+  public void supprimeCopainAvecId(Long id) {
     this.copainRepository.deleteById(id);
   }
 
-  public long compte() {
+  public Long compte() {
     return copainRepository.count();
   }
 }

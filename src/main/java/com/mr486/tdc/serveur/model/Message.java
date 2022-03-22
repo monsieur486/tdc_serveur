@@ -1,22 +1,28 @@
 package com.mr486.tdc.serveur.model;
 
-import com.google.gson.Gson;
-import lombok.Data;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
-@Data
+import java.util.HashMap;
+import java.util.Map;
+
+
+@Component
 public class Message {
-  private static final Gson GSON = new Gson();
 
-  private Integer code;
-  private String content;
+  private Message(){
 
-  public String toJson(){
-    return GSON.toJson(this, Message.class);
   }
 
-  public Message(Integer code, String content){
-    this.code = code;
-    this.content = content;
+
+  public static ResponseEntity<Object> generateResponse(String message, HttpStatus status, Object responseObj) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("message", message);
+    map.put("status", status.value());
+    map.put("data", responseObj);
+
+    return new ResponseEntity<>(map,status);
   }
 
 }

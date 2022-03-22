@@ -9,7 +9,6 @@
 <div layout:fragment="content">
     <div>
         <h4>Copains</h4>
-        <p>Nombre de copains : <span th:text="${nombreCopains}"></span></p>
         <div sec:authorize="hasAuthority('ROLE_ADMIN')">
             <button
                     class="uk-button uk-button-primary uk-box-shadow-hover-large">
