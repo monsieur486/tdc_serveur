@@ -3,13 +3,17 @@ package com.mr486.tdc.serveur.controller.api;
 import com.mr486.tdc.serveur.model.Copain;
 import com.mr486.tdc.serveur.model.Message;
 import com.mr486.tdc.serveur.service.CopainService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://127.0.0.1:8080", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class ApiCopainsController {
@@ -77,5 +81,15 @@ public class ApiCopainsController {
     } else {
       return Message.generateResponse("Copain introuvable avec l'ID: " + id.toString(), HttpStatus.NOT_FOUND, null);
     }
+  }
+
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api").allowedOrigins("*");
+      }
+    };
   }
 }
