@@ -15,7 +15,7 @@
                 Ajouter un copain
             </button>
         </div>
-        <table class="uk-table uk-table-striped">
+        <table class="uk-table uk-table-striped" uk-scrollspy="cls: uk-animation-slide-left; target: .copain-carte; delay: 200; repeat: true">
             <thead>
             <tr>
                 <th>Nom</th>
@@ -24,7 +24,8 @@
             <tbody>
             <tr th:each="copain : ${copains}">
                 <td>
-                    <div uk-scrollspy="cls: uk-animation-slide-left; target: .uk-cover-container; delay: 500; repeat: true">
+                    <div>
+                        <div class="copain-carte">
                             <div class="uk-cover-container uk-inline-clip" style="">
                                 <canvas height="50" width="50"></canvas>
                                 <img
@@ -37,6 +38,7 @@
                                 >
                             </div>
                             <span class="nom_trombi" th:text="${copain.getNom()}"></span>
+                        </div>
                     </div>
                 </td>
             </tr>
