@@ -24,20 +24,20 @@
             <tbody>
             <tr th:each="copain : ${copains}">
                 <td>
-                    <div class="uk-cover-container uk-inline-clip" style="">
-                        <canvas height="50" width="50"></canvas>
-                        <img
-                                class=""
-                                alt=""
-                                src=""
-                                th:src="@{${'/img/' + copain.getImage()}}"
-                                width=""
-                                height=""
-                                uk-img
-                                uk-cover
-                        >
+                    <div uk-scrollspy="cls: uk-animation-slide-left; target: .uk-cover-container; delay: 500; repeat: true">
+                            <div class="uk-cover-container uk-inline-clip" style="">
+                                <canvas height="50" width="50"></canvas>
+                                <img
+                                        class=""
+                                        alt=""
+                                        src=""
+                                        th:src="@{${'/img/' + copain.getImage()}}"
+                                        uk-img
+                                        uk-cover
+                                >
+                            </div>
+                            <span class="nom_trombi" th:text="${copain.getNom()}"></span>
                     </div>
-                    <span class="nom_trombi" th:text="${copain.getNom()}"></span>
                 </td>
             </tr>
             </tbody>
