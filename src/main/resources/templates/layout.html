@@ -48,6 +48,13 @@
             </li>
             <div sec:authorize="isAuthenticated()">
                 <li class="uk-active">
+                    <a class="menuItem" th:href="@{/gestion}">
+                        <div class="menuItemText">Gestion</div>
+                    </a>
+                </li>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <li class="uk-active">
                     <a class="menuItem" th:href="@{/logout}">
                         <div class="menuItemText">
                             <span uk-icon="sign-out"></span>
