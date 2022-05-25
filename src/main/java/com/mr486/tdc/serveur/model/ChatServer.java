@@ -37,7 +37,6 @@ public class ChatServer extends WebSocketServer
 
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-
         log.info("déconnexion");
     }
 
@@ -46,7 +45,7 @@ public class ChatServer extends WebSocketServer
         log.info("Message reçu");
     }
 
-    private String sendMessage(Integer code, String msg){
+    private String sendMessage(Integer code, Integer msg){
         Ping pingToSend = new Ping(code, msg);
         return pingToSend.toJson();
     }
@@ -66,7 +65,7 @@ public class ChatServer extends WebSocketServer
         setConnectionLostTimeout(100);
     }
 
-    public void sendToAll(Integer code, String content){
+    public void sendToAll(Integer code, Integer content){
         broadcast(sendMessage(code,content));
     }
 }
