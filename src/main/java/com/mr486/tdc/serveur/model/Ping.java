@@ -3,6 +3,8 @@ package com.mr486.tdc.serveur.model;
 import com.google.gson.Gson;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 public class Ping {
   private static final Gson GSON = new Gson();

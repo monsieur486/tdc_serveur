@@ -10,7 +10,7 @@ import org.java_websocket.server.WebSocketServer;
 import org.springframework.stereotype.Component;
 import java.net.InetSocketAddress;
 import java.util.Collections;
-import java.util.Objects;
+import java.util.Map;
 
 
 @Log4j2
@@ -42,12 +42,8 @@ public class ChatServer extends WebSocketServer
     }
 
     @Override
-    public void onMessage(WebSocket conn, String message) {
-        if (Objects.equals(message, "ping")) {
-            broadcast(sendMessage(100,"Ping de ping"));
-        } else {
-            broadcast(sendMessage(200,message));
-        }
+    public void onMessage(WebSocket webSocket, String s) {
+        log.info("Message reçu");
     }
 
     private String sendMessage(Integer code, String msg){
