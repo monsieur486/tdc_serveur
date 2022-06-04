@@ -1,4 +1,4 @@
 yarn upgrade
-yarn gulp vendor
-yarn gulp build
+yarn gulp sass
+yarn gulp scripts
 yarn gulp watch
