@@ -1,4 +1,4 @@
-yarn upgrade
+#yarn upgrade
 yarn gulp images
 yarn gulp sass
 yarn gulp scripts

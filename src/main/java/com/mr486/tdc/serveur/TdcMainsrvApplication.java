@@ -47,7 +47,7 @@ public class TdcMainsrvApplication {
       chatServer.setConnectionLostTimeout(30);
     }
 
-    chatServer.start();
+    //chatServer.start();
   }
 
   private static SSLContext getContext() {

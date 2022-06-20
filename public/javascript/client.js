@@ -1,4 +1,4 @@
-window.addEventListener( "load", function( event ) {
+window.addEventListener( "load", function( _event ) {
 
     //let ws = new WebSocket( "wss://tdc.mr486.com:8887/");
     let ws = new WebSocket( "ws://localhost:8887/");
@@ -11,7 +11,7 @@ window.addEventListener( "load", function( event ) {
         }
     }
 
-    ws.addEventListener( "open", function( evt ) {
+    ws.addEventListener( "open", function( _evt ) {
         console.log( "Connecté au serveur websocket TDC" );
     });
 
@@ -20,7 +20,7 @@ window.addEventListener( "load", function( event ) {
         traitement(obj);
     });
 
-    ws.addEventListener( "close", function( evt ) {
+    ws.addEventListener( "close", function( _evt ) {
         console.log( "Connexion avec le serveur websocket TDC interrompue." );
     });
 
