@@ -35,6 +35,10 @@ public class TdcMainsrvApplication {
   static
   String profil;
 
+  @Value("${websocket.active}")
+  static
+  String websoket;
+
   public static void main(String[] args) {
 
     SpringApplication.run(TdcMainsrvApplication.class, args);
@@ -47,7 +51,8 @@ public class TdcMainsrvApplication {
       chatServer.setConnectionLostTimeout(30);
     }
 
-    //chatServer.start();
+    chatServer.start();
+
   }
 
   private static SSLContext getContext() {
