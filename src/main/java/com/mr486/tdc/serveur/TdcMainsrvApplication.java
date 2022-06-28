@@ -33,9 +33,9 @@ public class TdcMainsrvApplication {
   public static final ChatServer chatServer = new ChatServer(8887);
   private static Long reunionActiveId;
 
-  @Value("${spring.profiles.active}")
+  //@Value("${spring.profiles.active}")
   static
-  String profil;
+  String profil = "prod";
 
   public static void main(String[] args) {
 
