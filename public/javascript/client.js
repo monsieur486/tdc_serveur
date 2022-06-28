@@ -1,7 +1,7 @@
 window.addEventListener( "load", function( _event ) {
 
-    //let ws = new WebSocket( "wss://tdc.mr486.com:8887/");
-    let ws = new WebSocket( "ws://localhost:8887/");
+    let ws = new WebSocket( "wss://tdc.mr486.com:8887");
+    //let ws = new WebSocket( "ws://localhost:8887");
 
     function traitement(obj) {
         console.log( "Message du serveur code:" + obj.code  );
