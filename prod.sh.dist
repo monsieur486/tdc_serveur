@@ -1,4 +1,4 @@
-git pull https://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:x-oauth-basic@github.com/monsieur486/tdc_serveur.git
+git pull
 ./mvnw clean
 ./mvnw install
 clear
