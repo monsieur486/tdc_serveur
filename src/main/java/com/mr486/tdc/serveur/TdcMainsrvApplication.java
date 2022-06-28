@@ -1,6 +1,7 @@
 package com.mr486.tdc.serveur;
 
 import com.mr486.tdc.serveur.model.ChatServer;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,6 +27,7 @@ import javax.xml.bind.DatatypeConverter;
 import org.java_websocket.server.DefaultSSLWebSocketServerFactory;
 
 @SpringBootApplication
+@Log4j2
 public class TdcMainsrvApplication {
 
   public static final ChatServer chatServer = new ChatServer(8887);
@@ -35,20 +37,21 @@ public class TdcMainsrvApplication {
   static
   String profil;
 
-  @Value("${websocket.active}")
-  static
-  String websoket;
-
   public static void main(String[] args) {
 
     SpringApplication.run(TdcMainsrvApplication.class, args);
 
+    log.warn("Initialisation du serveur websocket");
+
     if (Objects.equals(profil, "prod")){
+      log.warn("WSS pris en compte");
       SSLContext context = getContext();
       if (context != null) {
         chatServer.setWebSocketFactory(new DefaultSSLWebSocketServerFactory(getContext()));
       }
       chatServer.setConnectionLostTimeout(30);
+    } else {
+      log.warn("WS pris en compte");
     }
 
     chatServer.start();
